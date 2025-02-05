@@ -15,7 +15,8 @@
     padding: 10px;
   }
   .tour-card {
-    padding: 10px;
+    padding: 10px !important;
+    margin: 10px !important;
   }
 }
 
