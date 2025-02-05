@@ -14,6 +14,9 @@
     margin: 20px auto;
     padding: 10px;
   }
+  .tour-card {
+    padding: 10px;
+  }
 }
 
 .tour-title {
