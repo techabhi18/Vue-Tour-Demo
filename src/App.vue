@@ -54,7 +54,7 @@
       </div>
       <div class="tour-card-body">
         <p>Add the &lt;v-tour&gt; component to trigger the interactive tour.</p>
-        <pre><code>&lt;v-tour name="myTour" :steps="steps"&gt;&lt;/v-tour&gt;</code></pre>
+        <pre><code>&lt;v-tour name="vueTour" :steps="steps"&gt;&lt;/v-tour&gt;</code></pre>
       </div>
     </div>
 
@@ -65,18 +65,18 @@
       <div class="tour-card-body">
         <p>Start the tour automatically when the component is mounted.</p>
         <pre><code>mounted() {
-  this.$tours['myTour'].start();
+  this.$tours['vueTour'].start();
 }</code></pre>
       </div>
     </div>
 
-    <v-tour name="myTour" :steps="steps"></v-tour>
+    <v-tour name="vueTour" :steps="steps"></v-tour>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'my-tour',
+  name: 'vueTour',
   data() {
     return {
       steps: [
@@ -111,7 +111,7 @@ export default {
     }
   },
   mounted() {
-    this.$tours['myTour'].start();
+    this.$tours['vueTour'].start();
   }
 }
 </script>
