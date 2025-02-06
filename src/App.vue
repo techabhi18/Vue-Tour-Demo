@@ -40,7 +40,7 @@
       </div>
       <div class="tour-card-body">
         <p>Define your steps in an array, specifying target elements and content for each step.</p>
-        <pre><code>steps: [
+        <pre><code>const steps = [
   { target: '#step1', content: 'Install Vue.js 3 in your app.' },
   { target: '#step2', content: 'Install VueTour and import it into your project.' }, 
   { target: '#step3', content: 'Define steps and initialize the tour.' }
@@ -64,9 +64,10 @@
       </div>
       <div class="tour-card-body">
         <p>Start the tour automatically when the component is mounted.</p>
-        <pre><code>mounted() {
-  this.$tours['vueTour'].start();
-}</code></pre>
+        <pre><code>onMounted(() => {
+  const instance = getCurrentInstance();
+  instance?.proxy?.$tours["vueTour"].start();
+});</code></pre>
       </div>
     </div>
 
@@ -74,46 +75,41 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'vueTour',
-  data() {
-    return {
-      steps: [
-        {
-          target: '[data-v-step="0"]',
-          header: {
-            title: 'Install Vue.js 3 (terminal)',
-          },
-          content: 'Start by installing Vue.js 3 using either Vue CLI or Vite to create your app.'
-        },
-        {
-          target: '[data-v-step="1"]',
-          content: 'To integrate VueTour, first install the library via npm: npm install vue3-tour'
-        },
-        {
-          target: '[data-v-step="2"]',
-          content: 'Import and use VueTour in your application’s main entry file.'
-        },
-        {
-          target: '[data-v-step="3"]',
-          content: 'Define your steps with targets and content in a structured array, then initialize VueTour.'
-        },
-        {
-          target: '[data-v-step="4"]',
-          content: 'Finally, include the <v-tour> component in your template to trigger the tour.'
-        },
-        {
-          target: '[data-v-step="5"]',
-          content: 'Start the tour automatically when the component is mounted using the mounted lifecycle hook.'
-        }
-      ]
-    }
+<script setup>
+import { getCurrentInstance, onMounted } from 'vue';
+
+const steps = [
+  {
+    target: '[data-v-step="0"]',
+    header: { title: 'Install Vue.js 3 (terminal)' },
+    content: 'Start by installing Vue.js 3 using either Vue CLI or Vite to create your app.'
   },
-  mounted() {
-    this.$tours['vueTour'].start();
+  {
+    target: '[data-v-step="1"]',
+    content: 'To integrate VueTour, first install the library via npm: npm install vue3-tour'
+  },
+  {
+    target: '[data-v-step="2"]',
+    content: 'Import and use VueTour in your application’s main entry file.'
+  },
+  {
+    target: '[data-v-step="3"]',
+    content: 'Define your steps with targets and content in a structured array, then initialize VueTour.'
+  },
+  {
+    target: '[data-v-step="4"]',
+    content: 'Finally, include the <v-tour> component in your template to trigger the tour.'
+  },
+  {
+    target: '[data-v-step="5"]',
+    content: 'Start the tour automatically when the component is mounted using the mounted lifecycle hook.'
   }
-}
+];
+
+onMounted(() => {
+  const instance = getCurrentInstance();
+  instance?.proxy?.$tours["vueTour"].start();
+});
 </script>
 
 <style scoped></style>
